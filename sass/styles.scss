@@ -1,114 +1,135 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway:400,600');
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:400,700");
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 $main: #fff;
-$second: #DDDDDD;
+$second: #dddddd;
 $black: #202020;
 
-::placeholder {
-  font-size: 1.1rem;
+%flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 
-  @media (max-width:800px){
-    font-size: 0.9rem;
-  }
+%transition {
+  -webkit-transition: ease-in-out 0.2s;
+  -o-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
+}
+
+%uppercase {
+  text-transform: uppercase;
 }
 
 body {
   background: $main;
-  font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
 }
 
-// mudar a fonte 'Raleway' para outra sem números caídos.
-h1, h2, h3 {
-  font-family: 'Raleway', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   margin: 0;
 }
 
-h2 {
-  font-size: 1.4rem;
-}
+h1 {font-size: 2rem;}
+
+h2 {font-size: 1.4rem;}
 
 h3 {
-  font-size: 1.05rem;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 200;
+  @extend %uppercase;
 }
 
-a {
-  text-decoration: none;
-}
+a {text-decoration: none;}
 
-a, p {
+a,
+p {
+  font-family: "Montserrat", sans-serif;
   font-size: 0.7rem;
   color: #61666a;
 }
 
-li {
-  list-style-type: none;
-}
+li {list-style-type: none;}
 
-.header {
+.top-bar {
   background: $second;
+  @extend %uppercase;
+  font-weight: 600;
   padding: 0.6rem 0;
 
-  text-transform: uppercase;
-  font-weight: 600;
-
-  display: flex;
+  @extend %flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+
+  a,
+  p {
+    color: #000;
+  }
 
   @media (max-width: 800px) {
     display: none;
   }
 
   .user-data {
-    display: inherit;
+    @extend %flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 
     a {
-      padding-right: 1.25rem;
       text-decoration: none;
+      padding-right: 1.25rem;
 
-      &:last-child {
-        padding: 0;
+      &:last-child {padding: 0;}
+
+      .fa-shopping-cart,
+      .fa-user {
+        color: $black;
+        margin-left: 1px;
       }
-    }
 
-    .cart:after {
-      content: "0";
-      height: 20px;
-      width: 15px;
-      background: #00b2b2;
-      color: $main;
-      border-radius: 50%;
-      text-align: center;
+      .circle {
+        height: 20px;
+        width: 20px;
 
-      position: absolute;
-      top: 9px;
-      margin-left: 3px;
-      display: block;
+        text-align: center;
+
+        background: #00b2b2;
+        color: $main;
+        border-radius: 50%;
+        padding: 2px;
+
+        margin: -1px 0 0 0;
+        display: inline-block;
+
+        p {
+          color: $main;
+          font-weight: bold;
+        }
+      }
     }
   }
 }
 
 // Menu
 // Hiding the hamburger icon.
-.toggle-menu {
-  display: none;
-}
+.toggle-menu {display: none;}
 
 header {
   max-width: 840px;
-  margin: 0 auto;
-  //border: solid 1px #000;
   padding: 1.25rem 0;
+  margin: 0 auto;
 }
 
 .site-title img {
@@ -118,45 +139,68 @@ header {
 
 // Styling nav
 .nav-list {
-  display: flex;
+  @extend %flex;
+
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row;
   flex-flow: row;
   white-space: nowrap;
-  justify-content:space-around;
-  align-items:center;
-  
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+
   li {
     position: relative;
     font-weight: 600;
 
     .has-logo h2 {
+      -webkit-animation-name: slideDown;
       animation-name: slideDown;
+      -webkit-animation-direction: forwards;
       animation-direction: forwards;
+      -webkit-animation-timing-function: ease-in-out;
       animation-timing-function: ease-in-out;
-      transform: translate3d(0,-500px,0);
+      -webkit-transform: translate3d(0, -500px, 0);
+      transform: translate3d(0, -500px, 0);
+
+      @-webkit-keyframes slideDown {
+        0% {
+          -webkit-transform: translate3d(0, -500px, 0);
+          transform: translate3d(0, -500px, 0);
+        }
+        100% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
 
       @keyframes slideDown {
         0% {
-          transform: translate3d(0,-500px,0);
+          -webkit-transform: translate3d(0, -500px, 0);
+          transform: translate3d(0, -500px, 0);
         }
         100% {
-          transform: translate3d(0,0,0);
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
         }
       }
     }
-    
+
     &:hover {
-      color: $black;
       background: $main;
-      transition: ease-out 0.2s;
+      color: $black;
+      @extend %transition;
     }
-    
-    &:not(.has-logo){
-      text-transform: uppercase;
-      display: block;
+
+    &:not(.has-logo) {
+      @extend %uppercase;
       padding: 0.5rem 1rem;
+      display: block;
     }
-    
-    // Para quando eu passar o mouse no elemento li, quero revelar o submenu que é diretamente após. Ele é composto pelo a e o ul, logo usa-se o seletor combinatório.
+
     &:hover a + ul {
       display: block;
       top: 100%;
@@ -168,54 +212,54 @@ header {
       vertical-align: middle;
     }
   }
-  
-  ul {
-    position:absolute;
-    z-index:99;
-    background:$black;
-    display:none;
+
+  .sublists {
+    background: $black;
+    position: absolute;
+    display: none;
+    z-index: 99;
 
     &:after {
       content: "";
       width: 0;
       height: 0;
-      position: absolute;
-      top: -10px;
-      left: 0;
+
       border-style: solid;
       border-width: 0 5px 10px 5px;
       border-color: transparent transparent $black transparent;
-      
-      @media only screen and (max-width: 680px){
+
+      position: absolute;
+      top: -10px;
+      left: 0;
+
+      @media (max-width: 680px) {
         display: none;
       }
-
     }
-    
-    // fazer com que o 'a' ocupe o espaço inteiro do botão.
+
     a {
       color: $main;
-      display: block;
       padding: 0.5rem;
+      display: block;
 
-      &:hover {
-        color: $black;
-      }
+      &:hover {color: $black;}
     }
   }
 }
 
-.mobile-display {
-  display: none;
-}
-
+.mobile-display {display: none;}
 // Fim do menu
 
 .search {
   padding: 10px 20px 20px;
 
-  display: flex;
+  @extend %flex;
+
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 
   @media (max-width: 800px) {
@@ -224,11 +268,13 @@ header {
 
   input {
     width: 45%;
+
+    background: lighten($second, 2%);
     font-weight: bold;
     padding: 12px 15px;
-    background: lighten($second, 2%);
+
+    @extend %transition;
     outline: none;
-    transition: ease-in-out 0.5s;
 
     &:focus {
       background: darken($second, 10%);
@@ -237,22 +283,42 @@ header {
     @media (max-width: 800px) {
       width: 65%;
     }
-  
+
+    @media (max-width: 680px) {
+      font-size: 1rem;
+    }
+
+    &::placeholder {
+      font-size: 0.8rem;
+      @extend %uppercase;
+    }
   }
 
   button {
-    position: relative;
-    padding: 12px 15px;
     background: lighten($second, 2%);
+    padding: 12px 15px;
+
+    position: relative;
+    outline: none;
+
+    @extend %transition;
+
+    &:hover {background: darken($second, 2%);}
   }
 }
 
 .article {
-  // background:lightblue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px 40px 40px;
+
+  @extend %flex;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 
   @media (max-width: 800px) {
     padding: 0 0 40px 0;
@@ -260,18 +326,16 @@ header {
 
   h2 {
     font-size: 1.2rem;
-    text-transform: uppercase;
-    padding-bottom: 1.4rem;
+    @extend %uppercase;
+    padding-bottom: 1.2rem;
   }
 
   img {
     width: 65%;
-    transition: ease-in-out 0.2s;
     opacity: 0.9;
+    @extend %transition;
 
-    &:hover {
-      opacity: 1;
-    }
+    &:hover {opacity: 1;}
 
     @media (max-width: 800px) {
       width: 70%;
@@ -279,15 +343,17 @@ header {
   }
 
   p {
-    font-size: 1rem;
     width: 70%;
-    padding-top: 2rem;
+
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
 
+    padding-top: 2rem;
+
     @media (max-width: 800px) {
-      padding-top: 1.5rem;
       text-align: justify;
+      padding-top: 1.5rem;
     }
   }
 }
@@ -298,79 +364,96 @@ header {
   border-bottom: solid 1px $second;
 
   @media (min-width: 800px) {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 
   h1 {
-    margin: 0;
     text-align: center;
+
+    @media (max-width: 640px) {
+      font-size: 1.5rem;
+    }
   }
+
+  p {@extend %uppercase;}
 
   .products-container {
     width: 100%;
     padding: 1.5rem 0;
-    // border: 1px solid #000;
 
-    display: flex;
+    @extend %flex;
+
+    -ms-flex-pack: distribute;
     justify-content: space-around;
 
     @media (max-width: 800px) {
-      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
     }
-    
+
     .card {
-      padding: 2rem 0;
       text-align: center; // serve para o desktop e para o responsivo.
+      padding: 2rem 0;
 
       &:hover {
-        transition: ease-out 0.5s;
-        transform: translate3d(0,-10px,0);
-        -webkit-box-shadow: 0px 7px 12px rgba(0,0,0,0.2);
-        -moz-box-shadow: 0px 7px 12px rgba(0,0,0,0.2);
-        box-shadow: 0px 7px 12px rgba(0,0,0,0.4);
+        -webkit-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+        -webkit-box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.4);
+
+        @extend %transition;
       }
 
       span {
-        position: absolute;
-        padding: 5px;
         font-size: 0.8rem;
-        border-radius: 50%;
-        border:solid 2px #bbb;
         color: #bbb;
 
-        @media (max-width: 800px){
+        border-radius: 50%;
+        border: solid 2px #bbb;
+
+        position: absolute;
+        padding: 5px;
+
+        @media (max-width: 800px) {
           font-size: 0.6rem;
         }
 
         p {
+          font-size: 1rem;
+          color: #bbb;
+          @extend %uppercase;
+
           position: absolute;
           top: -5px;
-          color: #bbb;
-          text-transform: uppercase;
-          font-size: 1rem;
           left: 140%;
-          
-          @media (max-width: 800px){
+
+          @media (max-width: 800px) {
             font-size: 0.8rem;
           }
         }
       }
 
-      img {
-        width: 80%;
-      }
+      img {width: 80%;}
 
-      h3 {
-        font-weight: 600;
-      }
+      h3 {font-weight: 600;}
 
       p {
-        padding-top: 0.5rem;
         font-weight: 600;
+        padding-top: 0.5rem;
         opacity: 0.9;
       }
     }
@@ -379,146 +462,147 @@ header {
 
 .social {
   padding: 2.5rem;
-  
-  display: flex;
+
+  @extend %flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 
-  // quando diminui a tela, fica ruim.
   .social-images {
     margin: 1.6rem 2rem;
     max-width: 75%;
-
-    display: flex;
+    
+    @extend %flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 
-    .contain {
+    .box {
       position: relative;
       margin-bottom: 0.8rem;
       margin-right: 0.8rem;
 
       img {
+        @extend %transition;
         display: block;
-        transition: ease-in-out 0.2s;
       }
 
       .overlay {
+        height: 100%;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.5);
+
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100%;
-        width: 100%;
         opacity: 0;
-        transition: ease 0.5s;
-        background: rgba(255,255,255, 0.5);
+
+        @extend %transition;
       }
-      
+
       .text {
         color: rgba(32, 32, 32, 1);
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        text-align:center;
+        text-align: center;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
       }
 
       &:hover .overlay {
-        opacity: 1;
         -webkit-box-shadow: inset 0px 0px 0px 5px rgba(32, 32, 32, 1);
-        -moz-box-shadow: inset 0px 0px 0px 5px rgba(32, 32, 32, 1);
         box-shadow: inset 0px 0px 0px 5px rgba(32, 32, 32, 1);
+        opacity: 1;
       }
     }
   }
 }
 
-// Media-queries do menu
-
 // Tablets
-@media only screen and (max-width: 900px){
-  header {
-    padding: 0;
-  }
-  .nav-list li:not(.has-logo) {
-    padding: 0.5rem 0;
-  }
-  .has-logo {
-    display: none;
-  }
+@media only screen and (max-width: 900px) {
+  header {padding: 0;}
+
+  .nav-list li:not(.has-logo) {padding: 0.5rem 0;}
+
+  .has-logo {display: none;}
+
   .mobile-display {
-    display: block;
     margin: 1rem auto;
-    text-align:center;
+    text-align: center;
+    display: block;
   }
-  .search {
-    padding: 1rem 0 1.5rem 0;
-  }
-  .products {
-    p {
-      text-align: center;
-    }
-  }
-  .social {
-    .social-images {
-      max-width: 100%;
-    }
-  }
+
+  .search {padding: 1rem 0 1.5rem 0;}
+
+  .products p {text-align: center;}
+
+  .social .social-images {max-width: 100%;}
 }
 
 // Smarts
-@media only screen and (max-width: 680px){
+@media only screen and (max-width: 680px) {
   .toggle-menu {
-    display: block;
-    max-width: -webkit-min-content; // tamanho será igual ao conteúdo, ou seja, o hambúrguer em si.
+    max-width: -webkit-min-content; // tamanho será igual ao conteúdo, ou seja, o hambúrguer.
+    max-width: -moz-min-content;
     max-width: -moz-min-content;
     max-width: min-content;
-    margin: 1rem auto; // centralizando automaticamente.
+
     background: $black;
-    text-align:center;
+    text-align: center;
     color: $main !important;
+
+    margin: 1rem auto; // centralizando automaticamente.
+    border-radius: 0.25rem;
     padding: 1rem;
-    border-radius: .25rem;
-    
-    &:hover {
-      background: #f92266;
-    }
-  }
-  
-  .nav-list {
     display: block;
+
+    &:hover {background: lighten($black, 15%);}
+  }
+
+  .nav-list {
+    max-height: 0;
     width: 100%;
-    position: static;
     line-height: 1rem;
-    z-index: 1012;
-    left:0;
-    top:0;
+
     background: $main;
     padding: 0 20%;
     text-align: center;
-    
+
+    position: static;
+    top: 0;
+    left: 0;
+
+    display: block;
+    z-index: 1012;
     // Ocultando a lista inicialmente, para exibir ao clicar no botão hambúrger.
-    max-height: 0;
     overflow: hidden;
-    
+
     &.active {
       max-height: 100%;
       overflow: auto;
     }
-    
-    // submenus!
-    ul {
-      position: static;
-      text-indent: 2rem;
-      z-index: 1013;
-      text-align: center;
 
-      li {
-        text-align: center;
-      }
+    .sublists {
+      text-indent: 2rem;
+      position: static;
+      z-index: 1013;
+
+      li {text-align: left;}
     }
   }
+  .article p {font-size: 0.8rem;}
 }
